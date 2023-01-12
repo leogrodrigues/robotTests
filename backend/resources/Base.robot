@@ -2,6 +2,7 @@
 Documentation        Arquivo de configuração
 
 Library    RequestsLibrary
+Library    libs/mongo.py
 
 Resource    routes/Sessions.robot
 Resource    routes/Signup.robot
