@@ -1,82 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 5.0.1 (Python 3.10.7 on win32)" generated="20230111 20:18:51.794" rpa="false" schemaversion="3">
-<suite id="s1" name="UserLoginTest" source="C:\Rocklov\backend\tests\UserLoginTest.robot">
-<test id="s1-t1" name="User Login" line="8">
-<kw name="Get Json" library="Helpers">
-<var>${payload}</var>
-<arg>sessions</arg>
-<arg>user_login.json</arg>
-<kw name="Get File" library="OperatingSystem">
-<var>${fixture}</var>
-<arg>${EXECDIR}/resources/fixtures/${route}/${file_name}</arg>
-<doc>Returns the contents of a specified file.</doc>
-<msg timestamp="20230111 20:18:51.885" level="INFO" html="true">Getting file '&lt;a href="file://C:\Rocklov\backend\resources\fixtures\sessions\user_login.json"&gt;C:\Rocklov\backend\resources\fixtures\sessions\user_login.json&lt;/a&gt;'.</msg>
-<msg timestamp="20230111 20:18:51.886" level="INFO">${fixture} = {
-    "email": "leogama@gmail.com",
-    "password": "123456"
-}</msg>
-<status status="PASS" starttime="20230111 20:18:51.885" endtime="20230111 20:18:51.886"/>
+<robot generator="Robot 5.0.1 (Python 3.10.7 on win32)" generated="20230111 21:05:42.706" rpa="false" schemaversion="3">
+<suite id="s1" name="SignupTests" source="C:\Rocklov\backend\tests\SignupTests.robot">
+<test id="s1-t1" name="Add New User" line="12">
+<kw name="Free Email" library="FakerLibrary">
+<var>${email}</var>
+<msg timestamp="20230111 21:05:43.275" level="INFO">${email} = debra14@yahoo.com</msg>
+<status status="PASS" starttime="20230111 21:05:43.275" endtime="20230111 21:05:43.275"/>
 </kw>
-<kw name="Evaluate" library="BuiltIn">
-<var>${json}</var>
-<arg>json.loads($fixture)</arg>
-<arg>json</arg>
-<doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20230111 20:18:51.888" level="INFO">${json} = {'email': 'leogama@gmail.com', 'password': '123456'}</msg>
-<status status="PASS" starttime="20230111 20:18:51.886" endtime="20230111 20:18:51.888"/>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{payload}</var>
+<arg>name=Tony Stark</arg>
+<arg>email=${email}</arg>
+<arg>password=pwd123</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230111 21:05:43.276" level="INFO">&amp;{payload} = { name=Tony Stark | email=debra14@yahoo.com | password=pwd123 }</msg>
+<status status="PASS" starttime="20230111 21:05:43.276" endtime="20230111 21:05:43.276"/>
 </kw>
-<msg timestamp="20230111 20:18:51.888" level="INFO">${payload} = {'email': 'leogama@gmail.com', 'password': '123456'}</msg>
-<status status="PASS" starttime="20230111 20:18:51.885" endtime="20230111 20:18:51.888"/>
-</kw>
-<kw name="POST Login" library="Sessions">
+<kw name="POST User" library="Signup">
 <var>${response}</var>
 <arg>${payload}</arg>
 <kw name="POST" library="RequestsLibrary">
 <var>${response}</var>
-<arg>${base_url}/sessions</arg>
+<arg>${base_url}/signup</arg>
 <arg>json=${payload}</arg>
 <arg>expected_status=any</arg>
 <doc>Sends a POST request.</doc>
-<msg timestamp="20230111 20:18:52.129" level="INFO">POST Request : url=https://rocklov-api-gama.fly.dev/sessions 
- path_url=/sessions 
- headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '52', 'Content-Type': 'application/json'} 
- body=b'{"email": "leogama@gmail.com", "password": "123456"}' 
+<msg timestamp="20230111 21:05:43.444" level="INFO">POST Request : url=https://rocklov-api-gama.fly.dev/signup 
+ path_url=/signup 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '74', 'Content-Type': 'application/json'} 
+ body=b'{"name": "Tony Stark", "email": "debra14@yahoo.com", "password": "pwd123"}' 
  </msg>
-<msg timestamp="20230111 20:18:52.130" level="INFO">POST Response : url=https://rocklov-api-gama.fly.dev/sessions 
+<msg timestamp="20230111 21:05:43.444" level="INFO">POST Response : url=https://rocklov-api-gama.fly.dev/signup 
  status=200, reason=OK 
- headers={'x-powered-by': 'Express', 'access-control-allow-origin': '*', 'content-type': 'application/json; charset=utf-8', 'content-encoding': 'gzip', 'etag': 'W/"29-eai0p+TXDMrWeyDkhtWc5hBs7K0"', 'date': 'Wed, 11 Jan 2023 23:18:51 GMT', 'connection': 'keep-alive', 'keep-alive': 'timeout=5', 'transfer-encoding': 'chunked', 'server': 'Fly/e78c172f (2023-01-10)', 'via': '1.1 fly.io', 'fly-request-id': '01GPHJ24GFXSJVJGJYB6JVA974-gru'} 
- body={"user_token":"63bc75f0ccf31e021bc0833b"} 
+ headers={'x-powered-by': 'Express', 'access-control-allow-origin': '*', 'content-type': 'application/json; charset=utf-8', 'content-encoding': 'gzip', 'etag': 'W/"88-Hi0l9hJJSY+sx3VHF65aDegLMvY"', 'date': 'Thu, 12 Jan 2023 00:05:42 GMT', 'connection': 'keep-alive', 'keep-alive': 'timeout=5', 'transfer-encoding': 'chunked', 'server': 'Fly/e78c172f (2023-01-10)', 'via': '1.1 fly.io', 'fly-request-id': '01GPHMQXXXGDGQ2YHRCYD6K38P-gru'} 
+ body={"_id":"63bf4ed6ccf31e021bc083b4","name":"Tony Stark","email":"debra14@yahoo.com","password":"45cb41b32dcfb917ccd8614f1536d6da","__v":0} 
  </msg>
-<msg timestamp="20230111 20:18:52.130" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<status status="PASS" starttime="20230111 20:18:51.889" endtime="20230111 20:18:52.130"/>
+<msg timestamp="20230111 21:05:43.444" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230111 21:05:43.277" endtime="20230111 21:05:43.445"/>
 </kw>
-<msg timestamp="20230111 20:18:52.130" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<status status="PASS" starttime="20230111 20:18:51.889" endtime="20230111 20:18:52.130"/>
+<msg timestamp="20230111 21:05:43.445" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230111 21:05:43.277" endtime="20230111 21:05:43.445"/>
 </kw>
 <kw name="Status Should Be" library="RequestsLibrary">
 <arg>200</arg>
 <arg>${response}</arg>
 <doc>Fails if response status code is different than the expected.</doc>
-<status status="PASS" starttime="20230111 20:18:52.131" endtime="20230111 20:18:52.131"/>
+<status status="PASS" starttime="20230111 21:05:43.445" endtime="20230111 21:05:43.446"/>
 </kw>
-<kw name="Set Variable" library="BuiltIn">
-<var>${token}</var>
-<arg>${response.json()}[user_token]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20230111 20:18:52.131" level="INFO">${token} = 63bc75f0ccf31e021bc0833b</msg>
-<status status="PASS" starttime="20230111 20:18:52.131" endtime="20230111 20:18:52.131"/>
-</kw>
-<kw name="Length Should Be" library="BuiltIn">
-<arg>${token}</arg>
-<arg>24</arg>
-<doc>Verifies that the length of the given item is correct.</doc>
-<msg timestamp="20230111 20:18:52.132" level="INFO">Length is 24</msg>
-<status status="PASS" starttime="20230111 20:18:52.131" endtime="20230111 20:18:52.132"/>
-</kw>
-<status status="PASS" starttime="20230111 20:18:51.884" endtime="20230111 20:18:52.132"/>
+<status status="PASS" starttime="20230111 21:05:43.274" endtime="20230111 21:05:43.446"/>
 </test>
-<doc>User login tests</doc>
-<status status="PASS" starttime="20230111 20:18:51.795" endtime="20230111 20:18:52.133"/>
+<doc>Signup tests</doc>
+<status status="PASS" starttime="20230111 21:05:42.708" endtime="20230111 21:05:43.448"/>
 </suite>
 <statistics>
 <total>
@@ -85,7 +59,7 @@
 <tag>
 </tag>
 <suite>
-<stat pass="1" fail="0" skip="0" id="s1" name="UserLoginTest">UserLoginTest</stat>
+<stat pass="1" fail="0" skip="0" id="s1" name="SignupTests">SignupTests</stat>
 </suite>
 </statistics>
 <errors>
