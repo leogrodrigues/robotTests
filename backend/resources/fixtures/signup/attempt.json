@@ -1,0 +1,26 @@
+{
+    "empty_name": {
+        "name": "",
+        "email": "steve@gmail.com",
+        "password": "pwd123"
+    },
+    "empty_email": {
+        "name": "Steve",
+        "email": "",
+        "password": "pwd123"
+    },
+    "empty_pass": {
+        "name": "Steve",
+        "email": "steve@gmail.com",
+        "password": ""
+    },
+    "whitout_name": {
+        "email": "steve@gmail.com",
+        "password": "pwd123"
+    },
+    "wrong_email": {
+        "name": "Steve",
+        "email": "steve#gmail.com",
+        "password": "pwd123"
+    }
+}    
