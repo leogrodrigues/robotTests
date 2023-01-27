@@ -7,6 +7,8 @@ Library    libs/mongo.py
 Resource    routes/Sessions.robot
 Resource    routes/Signup.robot
 Resource    Helpers.robot
+Resource    routes/Equipos.robot
+
 
 *** Variables ***
 
